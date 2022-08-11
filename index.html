@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Space Invaders</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <script>
+    const FirebaseConfig = {
+      apiKey: "AIzaSyBwGj4ZBmH2-ESpoSu_FcckpwIoepQDyIY",
+      authDomain: "rexv3-f13c6.firebaseapp.com",
+      projectId: "rexv3-f13c6",
+      storageBucket: "rexv3-f13c6.appspot.com",
+      messagingSenderId: "204164342148",
+      appId: "1:204164342148:web:bb0c1cfdd761aefa4d7dd1",
+      measurementId: "G-3L7BNSRP8Q"
+    };
+    firebase.initializeApp(FirebaseConfig);
+    const db = firebase.firestore();
+
+
+
+    function fetchShipImage() {
+      db.collection("nftpic").doc("currentnftpic").get().then((doc) => {
+        if (doc.exists) {
+          const image = doc.data().shipImageUrl;
+          document.getElementById('defender').src = image;
+          // console.log("Image URL:", doc.data().imageurl);
+          console.log("Injected " + doc.data().shipImageUrl);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("Injection failed!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    function fetchInvaderOneImage() {
+      db.collection("nftpic").doc("currentnftpic").get().then((doc) => {
+        if (doc.exists) {
+          const image2 = doc.data().invaderOneImageURL;
+          document.getElementById('invader-1').src = image2;
+          document.getElementById('invader-2').src = image2;
+          // console.log("Image URL:", doc.data().imageurl);
+          console.log("Injected " + doc.data().invaderOneImageURL);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("Injection failed!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    function fetchInvaderTwoImage() {
+      db.collection("nftpic").doc("currentnftpic").get().then((doc) => {
+        if (doc.exists) {
+          const image3 = doc.data().invaderTwoImageURL;
+          document.getElementById('soldier-1').src = image3;
+          document.getElementById('soldier-2').src = image3;
+          // console.log("Image URL:", doc.data().imageurl);
+          console.log("Injected " + doc.data().invaderTwoImageURL);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("Injection failed!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    function fetchInvaderThreeImage() {
+      db.collection("nftpic").doc("currentnftpic").get().then((doc) => {
+        if (doc.exists) {
+          const image4 = doc.data().invaderThreeImageURL;
+          document.getElementById('grunt-1').src = image4;
+          document.getElementById('grunt-2').src = image4;
+          // console.log("Image URL:", doc.data().imageurl);
+          console.log("Injected " + doc.data().invaderThreeImageURL);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("Injection failed!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    // function fetchInvaderUfoImage() {
+    //   db.collection("nftpic").doc("currentnftpic").get().then((doc) => {
+    //     if (doc.exists) {
+    //       const image = doc.data().invaderImageURL;
+    //       document.getElementById('ufo').src = image;
+    //       // console.log("Image URL:", doc.data().imageurl);
+    //       console.log("Injected " + doc.data().invaderUfoImageURL);
+    //     } else {
+    //       // doc.data() will be undefined in this case
+    //       console.log("Injection failed!");
+    //     }
+    //   }).catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // }
+
+    fetchInvaderOneImage();
+    fetchInvaderTwoImage();
+    fetchInvaderThreeImage();
+    // fetchInvaderUfoImage();
+    fetchShipImage();
+
+
+  </script>
+  <script src="bundle.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-89969478-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+
+  <div id="container">
+    <div class="hide" id="menu-button">
+      Menu
+    </div>
+    <canvas id="game-canvas"></canvas>
+
+
+    <div id="menu-container" class="hide menu-container">
+      <div class='header'>SPACE INVADERS</div>
+      <div id='about-button' class='hide button'>About</div>
+      <div id='instructions-button' class='hide button'>Instructions</div>
+      <div id='resume-button' class='hide button'>Resume</div>
+      <div id='restart-button' class='hide button'>Restart</div>
+    </div>
+
+    <div id='about' class='hide'>
+      <div id='close-about' class='hide'>close[x]</div>
+      <p>
+        This is a remake of the classic arcade game, Space Invaders.
+        <br>
+        Made by <a id='port-link' href="http://www.jayhwang.xyz">Jay Hwang</a>
+      </p>
+    </div>
+
+    <div id='instructions' class='hide'>
+      <div id='close-instructions' class='hide'>close[x]</div>
+      <p>
+        Press space to shoot, and use the arrow keys to move.
+
+        <br>
+
+        Every once in a while, a mystery ufo will spawn. If you manage
+        to kill it, it may drop items that upgrade your ship.
+        Be sure to pick these up quickly because they will disappear!
+        <p />
+    </div>
+
+    <div id="invader-info" class="show">
+      <p>= 10 points</p>
+      <p>= 20 points</p>
+      <p>= 40 points</p>
+      <p>= ??? points</p>
+
+    </div>
+
+    <div id='splash-instruction' class='show'>
+      <p>SPACE TO SHOOT</p>
+      <p>ARROW KEYS TO MOVE</p>
+    </div>
+
+    <div id='play-game'>
+      <p>CLICK TO START</p>
+    </div>
+
+    <!-- Sprite images -->
+
+    <img id="audio" src="./images/audio.jpg" />
+
+    <img class='hide' id='mute' src='./images/mute.jpg' />
+
+    <img class='hide' id='game-over' src='./images/game-over.jpg' />
+
+    <img id="main-logo" src="./images/main-logo.jpg" />
+
+    <!-- <img
+        id="play-game"
+        src="./images/play-game.jpg" /> -->
+
+    <img class="hide" id="defender" src="./images/defender.jpg" />
+
+    <img class='hide' id='defender-death' src='./images/defender-death.png' />
+
+    <img class="" id="grunt-1" src="./images/grunt-1.jpg" />
+
+    <img class="hide" id="grunt-2" src="./images/grunt-2.jpg" />
+
+    <img class="" id="soldier-1" src="./images/soldier-1.jpg" />
+
+    <img class="hide" id="soldier-2" src="./images/soldier-2.jpg" />
+
+    <img class="" id="invader-1" src='./images/invader-1.jpg' />
+
+    <img class="hide" id="invader-2" src='./images/invader-2.jpg' />
+
+    <img class="" id="ufo" src="./images/ufo.jpg" />
+
+    <img class="hide" id="lives" src="./images/lives.jpg" />
+
+    <img class="hide" id="ship-death" src="./images/ship-death.jpg" />
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
+</body>
+
+</html>
