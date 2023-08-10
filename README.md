@@ -1,5 +1,5 @@
-# space_invaders_injectionv3
-REX Space Invaders v3
+# REX Space Invaders
+In v3 of REX Space Invaders inject and play with your NFTs
 
 A web-based, browser version of the classic Arcade game: Space Invaders.
 Use the arrow keys to move and the space bar to shoot
