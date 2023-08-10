@@ -2,7 +2,7 @@
 POC with the ability to inject NFTs into the classic Space Invaders game
 
 
-[Click here to Play Space Invaders]([https://spaceinvaders.r3x.tech/])
+[Click here to Play!](https://spaceinvaders.r3x.tech/)
 
 
 A web-based, browser version of the classic Arcade game: Space Invaders.
